@@ -18,6 +18,6 @@ jobs:
         run: |
           # Post reports as comments in GitHub PRs
           dvc pull data/data.csv --run-cache
-          echo "## Data pulled from dvc remote"
+          echo "## Data pulled from dvc remote" >> report.md
           # cat results.txt >> report.md
           cml-send-comment report.md
