@@ -13,6 +13,8 @@ jobs:
         run: |
           sudo apt install libgraphviz-dev
           sudo apt-get install graphviz
+          sudo apt-get install libtcmalloc-minimal4
+          export LD_PRELOAD="/usr/lib/libtcmalloc_minimal.so.4"
           pip install -r requirements.txt
           echo "## Installed requirements successfully"
       - name: Fetch data
