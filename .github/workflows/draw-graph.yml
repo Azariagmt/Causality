@@ -12,6 +12,7 @@ jobs:
           GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
         run: |
           sudo apt install libgraphviz-dev
+          sudo apt-get install graphviz
           pip install -r requirements.txt
           echo "## Installed requirements successfully"
       - name: Fetch data
