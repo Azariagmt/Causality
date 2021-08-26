@@ -26,10 +26,7 @@ jobs:
         run: |
           cd scripts 
           python causality_graphing.py
-      - name: Write CML report
-        run: |
           # Post reports as comments in GitHub PRs
-          cd scripts
           echo "## Causal Graph for this run" >> report.md
           cml-publish graph.png --md >> report.md
           cml-send-comment report.md
