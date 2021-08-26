@@ -8,6 +8,7 @@ jobs:
       - uses: iterative/setup-cml@v1
       - name: Install requirements
         run: |
+          sudo apt install libgraphviz-dev
           pip install -r requirements.txt
           echo "## Installed requirements successfully"
       - name: Fetch data
