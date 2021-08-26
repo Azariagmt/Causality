@@ -39,10 +39,7 @@ sm = from_pandas(struct_data)
 
 
 viz = plot_structure(
-    sm,
-    graph_attributes={"scale": "0.5"},
-    all_node_attributes=NODE_STYLE.WEAK,
-    all_edge_attributes=EDGE_STYLE.WEAK)
+    sm)
 img = Image(viz.draw(format='png'))
 
 print(img.data)
