@@ -11,7 +11,7 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
         run: |
-          sudo apt-get install graphviz graphviz-dev
+          sudo apt-get install libgraphviz-dev
           pip install -r requirements.txt
           echo "## Installed requirements successfully"
       - name: Fetch data
