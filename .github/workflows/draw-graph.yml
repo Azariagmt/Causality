@@ -11,10 +11,7 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
         run: |
-          sudo apt install libgraphviz-dev
-          sudo apt-get install graphviz
-          sudo apt-get install libtcmalloc-minimal4
-          export LD_PRELOAD="/usr/lib/libtcmalloc_minimal.so.4"
+          sudo apt-get install graphviz graphviz-dev
           pip install -r requirements.txt
           echo "## Installed requirements successfully"
       - name: Fetch data
