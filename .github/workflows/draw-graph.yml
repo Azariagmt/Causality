@@ -6,18 +6,24 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: iterative/setup-cml@v1
-      - name: Train model
+      - name: Install requirements
         run: |
-          # Your ML workflow goes here
           pip install -r requirements.txt
-          # python train.py
+          echo "## Installed requirements successfully"
+      - name: Fetch data
+        run: |
+          dvc pull data/data.csv --run-cache
+          echo "## Data pulled from dvc remote"
+      - name: Draw graph
+        run: |
+          cd scripts 
+          python causality_graphing.py
       - name: Write CML report
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
         run: |
           # Post reports as comments in GitHub PRs
-          dvc pull data/data.csv --run-cache
-          echo "## Data pulled from dvc remote" >> report.md
-          # cat results.txt >> report.md
+          echo "## Causal Graph for this run" >> report.md
+          cml-publish graph.png --md >> report.md
           cml-send-comment report.md
