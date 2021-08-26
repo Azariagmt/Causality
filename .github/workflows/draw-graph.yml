@@ -7,6 +7,9 @@ jobs:
       - uses: actions/checkout@v2
       - uses: iterative/setup-cml@v1
       - name: Install requirements
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
         run: |
           sudo apt install libgraphviz-dev
           pip install -r requirements.txt
@@ -20,9 +23,6 @@ jobs:
           cd scripts 
           python causality_graphing.py
       - name: Write CML report
-        env:
-          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
         run: |
           # Post reports as comments in GitHub PRs
           echo "## Causal Graph for this run" >> report.md
