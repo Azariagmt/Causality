@@ -39,7 +39,7 @@ sm = from_pandas(struct_data)
 
 
 viz = plot_structure(
-    sm, prog="dot")
+    sm)
 img = Image(viz.draw(format='png'))
 
 print(img.data)
