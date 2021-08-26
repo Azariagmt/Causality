@@ -4,4 +4,4 @@ sklearn
 causalnex==0.10.0
 pygraphviz
 IPython
-pylab
+pylab-sdk
