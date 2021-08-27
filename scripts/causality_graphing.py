@@ -9,7 +9,8 @@ data = pd.read_csv("../data/data.csv")
 
 data.head()
 
-struct_data = data.copy()
+important_features = ["area_mean", "concavity_mean", "concavity_worst","area_se","texture_mean", "symmetry_worst", "diagnosis"]
+struct_data = data[important_features].copy()
  
 non_numeric_columns = list(struct_data.select_dtypes(exclude=[np.number]).columns)
 print(non_numeric_columns)
@@ -39,7 +40,10 @@ sm = from_pandas(struct_data)
 
 
 viz = plot_structure(
-    sm)
+    sm, prog="dot",
+    graph_attributes={"scale": "0.5"},
+    all_node_attributes=NODE_STYLE.WEAK,
+    all_edge_attributes=EDGE_STYLE.WEAK)
 img = Image(viz.draw(format='png'))
 
 print(img.data)
