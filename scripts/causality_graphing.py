@@ -46,8 +46,9 @@ viz = plot_structure(
     all_edge_attributes=EDGE_STYLE.WEAK)
 img = Image(viz.draw(format='png'))
 
-print(img.data)
+print(len(img.data))
 
+print("writing graph image")
 with open("graph.png", "wb") as png:
     png.write(img.data)
 
