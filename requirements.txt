@@ -1,1 +1,7 @@
 dvc[gdrive]
+pandas==1.3.2
+sklearn
+causalnex==0.10.0
+pygraphviz
+IPython
+pylab-sdk
