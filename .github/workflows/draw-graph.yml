@@ -23,6 +23,9 @@ jobs:
           dvc pull data/data.csv --run-cache
           echo "## Data pulled from dvc remote"
       - name: Draw graph
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
         run: |
           cd scripts 
           python causality_graphing.py
