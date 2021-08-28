@@ -32,10 +32,10 @@ jobs:
           # Post reports as comments in GitHub PRs
           python experiment.py
           echo "## Causal Graph for this run" >> report.md
+          
+          cd ../output
           cml-publish graph.png --md >> report.md
-          cd ./output
-
-          cml-publish causalnex.png
-          cml-publish confusion_matrix.png
-          constrainted-graph.png
+          cml-publish causalnex.png --md >> report.md
+          cml-publish confusion_matrix.png --md >> report.md
+          cml-publish constrainted-graph.png --md >> report.md
           cml-send-comment report.md

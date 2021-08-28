@@ -7,3 +7,4 @@ IPython
 pylab-sdk
 mlflow
 matplotlib
+seaborn

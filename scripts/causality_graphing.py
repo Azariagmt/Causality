@@ -15,6 +15,9 @@ import os, sys
 if (not os.path.isdir('../logs')):
     os.mkdir("../logs")
 
+if (not os.path.isdir('../output')):
+    os.mkdir("../output")
+
 logs_path = "../logs/causal-graph.logs"
 if not os.path.exists(logs_path):
     with open(logs_path, "w"):
