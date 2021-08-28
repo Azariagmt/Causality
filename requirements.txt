@@ -5,3 +5,5 @@ causalnex==0.10.0
 pygraphviz
 IPython
 pylab-sdk
+mlflow
+matplotlib

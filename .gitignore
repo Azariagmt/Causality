@@ -1,0 +1,3 @@
+/scripts/mlruns/*
+
+*.pyc
