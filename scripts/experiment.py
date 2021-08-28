@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
 from sklearn.metrics import roc_curve, auc, accuracy_score, plot_confusion_matrix, plot_roc_curve
-
+from utils import jaccard_similarity, compute_jacards
 
 from logs import log
 
@@ -21,7 +21,7 @@ logger.info("Starts Causal graph script")
 train_store_path = 'data/data.csv'
 repo = "../"
 
-version = "'rawdata'"
+version = "v1"
 
 train_store_url = dvc.api.get_url(
     path=train_store_path,
@@ -44,6 +44,8 @@ print("DataFrame preprocessed")
 
 mlflow.set_experiment('Breast cancer Causality')
 
+
+
 if __name__ == "__main__":
     mlflow.log_param('train_store_data_url', train_store_url)
     mlflow.log_param('data_version', version)
@@ -53,7 +55,10 @@ if __name__ == "__main__":
     sm = construct_structural_model(df, tabu_parent_nodes=["diagnosis"])
     graph = draw_graph(sm, path="../output/graph.png")
     mlflow.log_artifact("../output/graph.png")
-    
+
+    mlflow.log_metrics(compute_jacards(df, 6))
+
+    # jaccard_similarity()
     constraint = Constraints(structural_model = sm)
     constraint.add_edge("concavity_mean", "diagnosis")
     constraint.add_edge("area_worst", "diagnosis")

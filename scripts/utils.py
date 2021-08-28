@@ -62,3 +62,55 @@ def plot_ROC_curve(predictions, y_scores):
     plt.title('ROC Curve')
     plt.show()
 
+
+# from scripts.experiment import compute_jacards
+import pandas as pd
+# from utils import jaccard_similarity
+from causality_graphing import construct_structural_model
+from preprocess_data import check_numeric, label_encode
+
+df = pd.read_csv("../data/data.csv", index_col="id")
+# TODO this needs to be replaced with versions of data using DVC
+df = df[['perimeter_mean', 'concavity_mean',
+       'radius_worst', 'perimeter_worst', 'area_worst',
+        'diagnosis']]
+
+print("DataFrame loaded")
+
+df, non_numeric_cols = check_numeric(df)
+df = label_encode(df, non_numeric_cols)
+
+print("DataFrame preprocessed")
+def compute_jacards(df:pd.DataFrame, division:int):
+    """[summary]
+
+    Args:
+        df (pd.DataFrame): [description]
+        division (int): [description]
+
+    Returns:
+        [type]: [description]
+    """
+    print("SHAPEEE",df.shape[0])
+    mods = round(df.shape[0] / division)
+    print("MODS", mods)
+    initial_mod = mods
+    df_holder = {}
+    struct_models = {}
+    jaccard_sim = {}
+    for num in range(division):
+        df_holder[num] = df.iloc[:mods,:]
+        struct_models[num] = construct_structural_model(df_holder[num], tabu_parent_nodes=["diagnosis"])
+        if num > 0 :
+            jaccard_sim[str(num)] = jaccard_similarity(struct_models[num-1], struct_models[num])
+        else: continue
+        mods = mods + initial_mod
+    pass
+
+    print("JACCAaAA", jaccard_sim)
+    return jaccard_sim
+
+
+
+
+# compute_jacards(df,6)
