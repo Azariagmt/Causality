@@ -36,5 +36,5 @@ jobs:
           cd ../output
           cml-publish graph.png --md >> report.md
           cml-publish confusion_matrix.png --md >> report.md
-          cml-publish constraintedgraph.png --md >> report.md
+          cml-publish constrainted-graph.png --md >> report.md
           cml-send-comment report.md
