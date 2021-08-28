@@ -21,11 +21,12 @@ logger.info("Starts Causal graph script")
 train_store_path = 'data/data.csv'
 repo = "../"
 
-version = "'trainstorev1'"
+version = "'rawdata'"
 
 train_store_url = dvc.api.get_url(
     path=train_store_path,
     repo=repo,
+    rev=version
 )
 
 data = pd.read_csv("../data/data.csv")
@@ -50,8 +51,8 @@ if __name__ == "__main__":
     mlflow.log_param('input_cols_shape', df.shape[1])
 
     sm = construct_structural_model(df, tabu_parent_nodes=["diagnosis"])
-    graph = draw_graph(sm)
-    mlflow.log_artifact("./graph.png")
+    graph = draw_graph(sm, path="../output/graph.png")
+    mlflow.log_artifact("../output/graph.png")
     
     constraint = Constraints(structural_model = sm)
     constraint.add_edge("concavity_mean", "diagnosis")
@@ -60,7 +61,8 @@ if __name__ == "__main__":
     constraint.add_edge("concavity_worst", "diagnosis")
     constraint.add_edge("perimeter_worst", "diagnosis")
     sm_constrainted = constraint.get_model()
-
+    graph = draw_graph(sm_constrainted, path="../output/constrainted-graph.png")
+    mlflow.log_artifact("../output/constrainted-graph.png")
 
     # Modelling 
     model = construct_model(df)

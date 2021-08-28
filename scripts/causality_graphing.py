@@ -55,7 +55,7 @@ def construct_structural_model(df:pd.DataFrame, notears=from_pandas_lasso, tabu_
     return structural_model
 
 
-def draw_graph(structural_model: from_pandas_lasso, prog="dot"):
+def draw_graph(structural_model: from_pandas_lasso, path, prog="dot"):
     """Draws Causal graph
 
     Args:
@@ -74,7 +74,7 @@ def draw_graph(structural_model: from_pandas_lasso, prog="dot"):
 
     # TODO convert print log to use logger
     print("writing graph image")
-    with open("graph.png", "wb") as png:
+    with open(f"{path}", "wb") as png:
         png.write(img.data)
 
     return img
