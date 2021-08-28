@@ -9,11 +9,23 @@ from causalnex.structure.notears import from_pandas, from_pandas_lasso
 from constraints import Constraints
 from logs import log
 import preprocess_data
+import os, sys
 
 
+if (not os.path.isdir('./logs')):
+    os.mkdir("./logs")
 
-logger = log(path="../logs/", file="causal-graph.logs")
-logger.info("Starts Causal graph script")
+logs_path = "./logs/causal-graph.logs"
+if not os.path.exists(logs_path):
+    with open(logs_path, "w"):
+        global logger
+        logger = log(path="../logs/", file="causal-graph.logs")
+        logger.info("Starts Causal graph script")
+else:
+    logger = log(path="../logs/", file="causal-graph.logs")
+    logger.info("Starts Causal graph script")
+
+
 
 
 data = pd.read_csv("../data/data.csv")
