@@ -33,7 +33,7 @@ jobs:
           python experiment.py
           echo "## Causal Graph for this run" >> report.md
           
-          cd ./output
+          cd ../output
           cml-publish graph.png --md >> report.md
           cml-publish causalnex.png
           cml-publish confusion_matrix.png
