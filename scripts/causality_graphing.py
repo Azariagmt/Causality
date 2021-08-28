@@ -87,7 +87,7 @@ if __name__ == "__main__":
     constraint.add_edge("area_mean", "diagnosis")
     constraint.add_edge("perimeter_worst", "diagnosis")
     sm_constrainted = constraint.get_model()
-    draw_graph(sm_constrainted)
+    draw_graph(sm_constrainted, path="../output/constrainted-two.png")
 
 
 
