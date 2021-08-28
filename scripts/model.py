@@ -88,9 +88,3 @@ def metrics(y_test:np.ndarray, predictions):
     return accuracy, precision, recall
 
 
-def plot_cm(df_cm):
-    # df_cm = pd.DataFrame(array, index=["stage 1", "stage 2", "stage 3", "stagte 4"], columns=["stage 1", "stage 2", "stage 3", "stagte 4"])
-    sns.set(font_scale=1.4) # for label size
-    sns.heatmap(df_cm, annot=True, annot_kws={"size": 16}) # font size
-
-    return plt
