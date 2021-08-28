@@ -40,10 +40,9 @@ mlflow.set_experiment('Breast cancer Causality')
 if __name__ == "__main__":
     sm = construct_structural_model(df, tabu_parent_nodes=["diagnosis"])
     graph = draw_graph(sm)
+    # convert png image to numpy.ndarray since png file isnt supported on mlflow
     fig = plt.imread("graph.png")
-    fig, ax = plt.subplots()
-    mlflow.log_figure(fig,artifact_file="./graph.png")
-    
+    mlflow.log_image(fig, "graph.png")
     constraint = Constraints(structural_model = sm)
     constraint.add_edge("concavity_mean", "diagnosis")
     constraint.add_edge("area_worst", "diagnosis")
