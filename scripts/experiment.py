@@ -12,8 +12,11 @@ from sklearn.metrics import confusion_matrix
 import seaborn as sns
 from sklearn.metrics import roc_curve, auc, accuracy_score, plot_confusion_matrix, plot_roc_curve
 from utils import jaccard_similarity, compute_jacards
-
+import os
 from logs import log
+
+if (not os.path.isdir('../output')):
+    os.mkdir("../output")
 
 logger = log(path="../logs/", file="causal-graph.logs")
 logger.info("Starts Causal graph script")
