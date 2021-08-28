@@ -37,5 +37,5 @@ jobs:
 
           cml-publish causalnex.png
           cml-publish confusion_matrix.png
-          constrainted-graph.png
+          cml-publish constrainted-graph.png
           cml-send-comment report.md
