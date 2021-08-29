@@ -22,14 +22,14 @@ logger = log(path="../logs/", file="causal-graph.logs")
 logger.info("Starts Causal graph script")
 
 train_store_path = 'data/data.csv'
-repo = "../"
+repo = "https://github.com/Azariagmt/Causality/"
 
 version = "v1"
 
 train_store_url = dvc.api.get_url(
     path=train_store_path,
     repo=repo,
-    # rev=version
+    rev=version
 )
 
 data = pd.read_csv("../data/data.csv")
