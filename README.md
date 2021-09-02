@@ -15,8 +15,9 @@
 
 1. <a href="#causal_graphs">Causal Graphs</a>
 2. <a href="#causal_models">Causal models</a>
-3. <a href="#starting">Getting started (tutorial)</a>
-4. <a href="#example">Example notebook</a>
+3. <a href="#data">Data </a>
+4. <a href="#starting">Getting started (tutorial)</a>
+5. <a href="#example">Example notebook</a>
 
 <h3 id="causal_graphs">Causal Graphs</h3>
 In statistics, econometrics, epidemiology, genetics and related disciplines, causal graphs are probabilistic graphical models used to encode assumptions about the data-generating process. Causal graphs can be used for communication and for inference.
@@ -26,6 +27,23 @@ Causal models are mathematical models representing causal relationships within a
 
 <img src="https://user-images.githubusercontent.com/56393921/131230395-c019762b-2ed8-41f3-980b-68b03a1dcb06.png">
 
-<h3>Data</h3>
+<h3 id="data">Data</h3>
 The first thing to do is to understand our data. We will be using a <a href="https://www.researchgate.net/publication/2302195_Breast_Cancer_Diagnosis_and_Prognosis_Via_Linear_Programming#pf1">Breast cancer dataset</a> in this causal inference demo. This requires us to understand a bit about the data, Breast cancer, and the diagnosis process. The first application to breast cancer diagnosis utilizes characteristics of individual cells obtained from a minimally invasive fine needle aspirate(FNA). Allows an accurate diagnosis and also constructs a surface that predicts when breast cancer is likely to recur.
  
+<h3 id="usage">Usage</h3>
+clone this repository
+```bash
+git clone https://github.com/Azariagmt/Causality/
+```
+Install requirements
+```bash
+pip install -r requirements.txt
+```
+Run experiment
+what experiment.py does is it starts a new mlflow experiment which pulls data from the DVC gdrive remote and starts logging essential metrics and drawing causality graphs
+```bash
+cd scripts
+```
+```bash
+python experiment.py
+```
