@@ -68,7 +68,10 @@ if __name__ == "__main__":
     mlflow.log_metrics(compute_jacards(df, 6))
 
     # jaccard_similarity()
-    constraint = Constraints(structural_model = sm)
+    selected_features = ['perimeter_mean', 'radius_worst', 'area_mean', 'perimeter_worst', 'diagnosis']
+
+    constrainted_sm = construct_structural_model(df[selected_features], tabu_parent_nodes=["diagnosis"])
+    constraint = Constraints(structural_model = constrainted_sm)
     constraint.add_edge("perimeter_mean", "diagnosis")
     constraint.add_edge("radius_worst", "diagnosis")
     constraint.add_edge("area_mean", "diagnosis")
@@ -79,7 +82,6 @@ if __name__ == "__main__":
 
     # Modelling 
     gt_model = construct_model(df)
-    selected_features = ['perimeter_mean', 'radius_worst', 'area_mean', 'perimeter_worst', 'diagnosis']
     selected_df = df[selected_features]
     print(selected_df.head())
     selected_model = construct_model(selected_df)
