@@ -30,17 +30,23 @@ Causal models are mathematical models representing causal relationships within a
 <h3 id="data">Data</h3>
 The first thing to do is to understand our data. We will be using a <a href="https://www.researchgate.net/publication/2302195_Breast_Cancer_Diagnosis_and_Prognosis_Via_Linear_Programming#pf1">Breast cancer dataset</a> in this causal inference demo. This requires us to understand a bit about the data, Breast cancer, and the diagnosis process. The first application to breast cancer diagnosis utilizes characteristics of individual cells obtained from a minimally invasive fine needle aspirate(FNA). Allows an accurate diagnosis and also constructs a surface that predicts when breast cancer is likely to recur.
  
-<h3 id="usage">Usage</h3>
+<h3 id="usage">Usage</h3> 
+
 clone this repository
+
 ```bash
 git clone https://github.com/Azariagmt/Causality/
 ```
+
 Install requirements
+
 ```bash
 pip install -r requirements.txt
 ```
-Run experiment
+
+Run experiment<br>
 what experiment.py does is it starts a new mlflow experiment which pulls data from the DVC gdrive remote and starts logging essential metrics and drawing causality graphs
+
 ```bash
 cd scripts
 ```
