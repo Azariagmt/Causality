@@ -1,3 +1,12 @@
+import pandas as pd
+import mlflow
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler, OneHotEncoder , LabelEncoder
+from sklearn.linear_model import LogisticRegression
+import numpy as np
+from sklearn.model_selection import train_test_split
+
 def jaccard_similarity(g, h):
     i = set(g).intersection(h)
     return round(len(i) / (len(g) + len(h) - len(i)),3)

@@ -9,11 +9,26 @@ from causalnex.structure.notears import from_pandas, from_pandas_lasso
 from constraints import Constraints
 from logs import log
 import preprocess_data
+import os, sys
 
 
+if (not os.path.isdir('../logs')):
+    os.mkdir("../logs")
 
-logger = log(path="../logs/", file="causal-graph.logs")
-logger.info("Starts Causal graph script")
+if (not os.path.isdir('../output')):
+    os.mkdir("../output")
+
+logs_path = "../logs/causal-graph.logs"
+if not os.path.exists(logs_path):
+    with open(logs_path, "w"):
+        global logger
+        logger = log(path="../logs/", file="causal-graph.logs")
+        logger.info("Starts Causal graph script")
+else:
+    logger = log(path="../logs/", file="causal-graph.logs")
+    logger.info("Starts Causal graph script")
+
+
 
 
 data = pd.read_csv("../data/data.csv")
@@ -43,7 +58,7 @@ def construct_structural_model(df:pd.DataFrame, notears=from_pandas_lasso, tabu_
     return structural_model
 
 
-def draw_graph(structural_model: from_pandas_lasso, prog="dot"):
+def draw_graph(structural_model: from_pandas_lasso, path, prog="dot"):
     """Draws Causal graph
 
     Args:
@@ -62,7 +77,7 @@ def draw_graph(structural_model: from_pandas_lasso, prog="dot"):
 
     # TODO convert print log to use logger
     print("writing graph image")
-    with open("graph.png", "wb") as png:
+    with open(f"{path}", "wb") as png:
         png.write(img.data)
 
     return img
@@ -75,7 +90,7 @@ if __name__ == "__main__":
     constraint.add_edge("area_mean", "diagnosis")
     constraint.add_edge("perimeter_worst", "diagnosis")
     sm_constrainted = constraint.get_model()
-    draw_graph(sm_constrainted)
+    draw_graph(sm_constrainted, path="../output/constrainted-two.png")
 
 
 

@@ -53,6 +53,11 @@ mlflow.set_experiment('Breast cancer Causality')
 
 
 if __name__ == "__main__":
+    mlflow.log_param('train_store_data_url', train_store_url)
+    mlflow.log_param('data_version', version)
+    mlflow.log_param('input_rows_shape', df.shape[0])
+    mlflow.log_param('input_cols_shape', df.shape[1])
+
     sm = construct_structural_model(df, tabu_parent_nodes=["diagnosis"])
     graph = draw_graph(sm, path="../output/gt-graph.png")
     mlflow.log_artifact("../output/gt-graph.png")
