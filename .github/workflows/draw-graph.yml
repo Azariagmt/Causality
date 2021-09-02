@@ -30,6 +30,18 @@ jobs:
           cd scripts 
           python causality_graphing.py
           # Post reports as comments in GitHub PRs
-          echo "## Causal Graph for this run" >> report.md
-          cml-publish graph.png --md >> report.md
+          python experiment.py
+          echo "### Causal Graph for this run" >> report.md
+          
+          cd ../output
+
+          cml-publish gt-graph.png --md >> report.md
+          echo "### Entire features model report" >> report.md
+          cat full_data.txt >> report.md
+          cml-publish gt_confusion_matrix.png --md >> report.md
+          echo "### Selected features model report" >> report.md
+          echo "#### Causal graph" >> report.md
+          cml-publish constrainted-graph.png --md >> report.md
+          cat selected_data.txt >> report.md
+          cml-publish selected_confusion_matrix.png --md >> report.md
           cml-send-comment report.md

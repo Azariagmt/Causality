@@ -69,7 +69,7 @@ def draw_graph(structural_model: from_pandas_lasso, prog="dot"):
 
 if __name__ == "__main__":
     sm = construct_structural_model(df, tabu_parent_nodes=["diagnosis"])
-
+    draw_graph(sm, path="../output/causalnex.png")
     constraint = Constraints(structural_model = sm)
     constraint.add_edge("concavity_mean", "diagnosis")
     constraint.add_edge("area_mean", "diagnosis")
