@@ -82,7 +82,8 @@ df = label_encode(df, non_numeric_cols)
 
 print("DataFrame preprocessed")
 def compute_jacards(df:pd.DataFrame, division:int):
-    """[summary]
+    """Does comparison with a Jaccard Similarity Index, 
+    measuring the intersection and union of the graph edges
 
     Args:
         df (pd.DataFrame): [description]
@@ -91,9 +92,7 @@ def compute_jacards(df:pd.DataFrame, division:int):
     Returns:
         [type]: [description]
     """
-    print("SHAPEEE",df.shape[0])
     mods = round(df.shape[0] / division)
-    print("MODS", mods)
     initial_mod = mods
     df_holder = {}
     struct_models = {}
@@ -102,12 +101,11 @@ def compute_jacards(df:pd.DataFrame, division:int):
         df_holder[num] = df.iloc[:mods,:]
         struct_models[num] = construct_structural_model(df_holder[num], tabu_parent_nodes=["diagnosis"])
         if num > 0 :
-            jaccard_sim[str(num)] = jaccard_similarity(struct_models[num-1], struct_models[num])
+            jaccard_sim["Jaccard similarity "+str(num)] = jaccard_similarity(struct_models[num-1], struct_models[num])
         else: continue
         mods = mods + initial_mod
     pass
 
-    print("JACCAaAA", jaccard_sim)
     return jaccard_sim
 
 
